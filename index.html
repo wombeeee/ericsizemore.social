@@ -87,11 +87,18 @@
     .about-content { max-width: 640px; }
     .about-content p { color: var(--text-primary); margin-bottom: 1rem; font-size: 1.125rem; line-height: 1.7; }
 
+    .year-filter { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2rem; }
+    .year-pill { background: none; border: 1px solid var(--border); color: var(--text-muted); font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.45rem 0.9rem; border-radius: var(--radius); cursor: pointer; transition: all var(--transition); }
+    .year-pill:hover { color: var(--text-primary); border-color: var(--text-primary); }
+    .year-pill[aria-pressed="true"] { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
+
     .session-list, .interest-list { list-style: none; }
-    .session, .interest { padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
-    .session:first-child, .interest:first-child { border-top: 1px solid var(--border); }
-    .session-meta { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
-    .session-title, .interest-name { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; letter-spacing: -0.01em; color: var(--text-primary); }
+    .session-list, .interest-list { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 2rem; border-top: 1px solid var(--border); }
+    .interest { padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+    .session { padding: 0.85rem 0; border-bottom: 1px solid var(--border); }
+    .session-meta { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.25rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+    .session-title { font-size: 1rem; font-weight: 600; margin-bottom: 0; letter-spacing: -0.01em; color: var(--text-primary); line-height: 1.45; }
+    .interest-name { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; letter-spacing: -0.01em; color: var(--text-primary); }
     .session-title a { color: var(--text-primary); }
     .session-title a:hover { color: var(--accent); }
     .interest-by { font-weight: 400; color: var(--text-muted); font-size: 0.9rem; }
@@ -125,6 +132,7 @@
       .hero { padding: 4.5rem 0 3.5rem; min-height: auto; }
       .hero-tagline { font-size: 1.2rem; }
       .section { padding: 3.5rem 0; }
+      .session-list, .interest-list { grid-template-columns: 1fr; column-gap: 0; }
     }
 
     @media (max-width: 480px) {
@@ -143,7 +151,7 @@
       </button>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#sessions">Sessions</a></li>
+        <li><a href="#work">Work</a></li>
         <li><a href="#stack">Stack</a></li>
         <li><a href="#following">Following</a></li>
         <li><a href="#connect">Connect</a></li>
@@ -159,7 +167,7 @@
         <h1 class="hero-name fade-in">Eric Sizemore</h1>
         <p class="hero-tagline fade-in">Always testing ideas.</p>
         <div class="hero-cta fade-in">
-          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="#work" class="btn btn-primary">View My Work</a>
           <a href="#connect" class="btn btn-outline">Get in Touch</a>
         </div>
       </div>
@@ -171,46 +179,204 @@
         <h2 class="section-title fade-in">About</h2>
         <div class="about-content fade-in">
           <p>
-            I'm Eric &mdash; Senior Education Consultant at CDW, where I've spent 13 years in K12 ed tech,
-            first as an IT director keeping school networks (and Chromebooks) alive, now training
-            educators and admins on Google Workspace, ChromeOS, and Gemini. 200+ sessions in.
-            I teach from the console, not the bullet point. Outside of work, I chase national parks
-            with my wife Makayla and our dogs, Cooper and Riley. Genuinely curious &mdash; happy to
-            talk WWII history or theology with anyone who'll listen. Sooners 🏈, Thunder 🏀, and
-            firmly convinced printers were sent here to test us.
+            Always testing ideas &mdash; for thirteen years that's mostly meant K12 ed tech.
+            Came up as an IT director (school networks, Chromebooks, the printer wars), now
+            spend my days at CDW training educators and admins on Google Workspace, ChromeOS,
+            and Gemini. 200+ sessions in. I teach from the console, not the bullet point.
+          </p>
+          <p>
+            Beyond work, &ldquo;testing ideas&rdquo; is just being curious out loud. National
+            parks with my wife Makayla and our dogs Cooper and Riley. WWII reading. Theology
+            arguments. Sooners 🏈, Thunder 🏀 &mdash; record optional.
           </p>
         </div>
       </div>
     </section>
 
     <!-- Sessions & Workshops -->
-    <section class="section" id="sessions">
+    <section class="section" id="work">
       <div class="container">
-        <h2 class="section-title fade-in">Sessions &amp; Workshops</h2>
+        <h2 class="section-title fade-in">Work</h2>
+        <nav class="year-filter fade-in" aria-label="Filter work by year">
+          <button class="year-pill" type="button" data-year="2026" aria-pressed="true">2026</button>
+          <button class="year-pill" type="button" data-year="2025" aria-pressed="false">2025</button>
+        </nav>
         <ol class="session-list fade-in">
 
-          <li class="session">
-            <div class="session-meta">
-              <time>2026</time>
-              <span class="session-venue">AZ &middot; CA &middot; TX &middot; IA &middot; ME &middot; NY</span>
-            </div>
-            <h3 class="session-title">Gemini Workshops</h3>
+          <!-- 2026 -->
+          <li class="session" data-year="2026">
+            <div class="session-meta"><time>May</time><span class="session-venue">Sandusky, OH</span></div>
+            <h3 class="session-title">Brainstorm Sandusky</h3>
+          </li>
+          <li class="session" data-year="2026">
+            <div class="session-meta"><time>Apr</time><span class="session-venue">Melville, NY</span></div>
+            <h3 class="session-title">Western Suffolk BOCES Gemini Workshop</h3>
+          </li>
+          <li class="session" data-year="2026">
+            <div class="session-meta"><time>Apr</time><span class="session-venue">South Portland, ME</span></div>
+            <h3 class="session-title">Maine Gemini Workshop</h3>
+          </li>
+          <li class="session" data-year="2026">
+            <div class="session-meta"><time>Apr</time><span class="session-venue">Virtual</span></div>
+            <h3 class="session-title">CNYRIC: Managing and Deploying Gemini in Google Workspace</h3>
+          </li>
+          <li class="session" data-year="2026">
+            <div class="session-meta"><time>Apr</time><span class="session-venue">Cedar Rapids, IA</span></div>
+            <h3 class="session-title">Iowa Gemini Workshop</h3>
+          </li>
+          <li class="session" data-year="2026">
+            <div class="session-meta"><time>Mar</time><span class="session-venue">Virtual</span></div>
+            <h3 class="session-title">Google EDU on Air: Managing Gemini and Google AI across the Chrome Platform</h3>
+          </li>
+          <li class="session" data-year="2026">
+            <div class="session-meta"><time>Mar</time><span class="session-venue">Louisville, KY</span></div>
+            <h3 class="session-title">KAST</h3>
+          </li>
+          <li class="session" data-year="2026">
+            <div class="session-meta"><time>Feb</time><span class="session-venue">Virtual</span></div>
+            <h3 class="session-title">Google EDU on Air: Staying Current in an Evolving AI Landscape</h3>
+          </li>
+          <li class="session" data-year="2026">
+            <div class="session-meta"><time>Feb</time><span class="session-venue">Houston, TX</span></div>
+            <h3 class="session-title">Houston Gemini Workshop</h3>
+          </li>
+          <li class="session" data-year="2026">
+            <div class="session-meta"><time>Jan</time><span class="session-venue">Irvine, CA</span></div>
+            <h3 class="session-title">Irvine Gemini Workshop</h3>
+          </li>
+          <li class="session" data-year="2026">
+            <div class="session-meta"><time>Jan</time><span class="session-venue">Phoenix, AZ</span></div>
+            <h3 class="session-title">Phoenix Gemini Workshop</h3>
+          </li>
+          <li class="session" data-year="2026">
+            <div class="session-meta"><time>Jan</time><span class="session-venue">Watsonville, CA</span></div>
+            <h3 class="session-title">Pajaro Level 1 &amp; 2 Google Admin Bootcamp</h3>
           </li>
 
-          <li class="session">
-            <div class="session-meta">
-              <time>2026</time>
-              <span class="session-venue">Wisconsin &middot; Ohio</span>
-            </div>
-            <h3 class="session-title">Brainstorm Conferences</h3>
+          <!-- 2025 -->
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Dec</time><span class="session-venue">Virtual</span></div>
+            <h3 class="session-title">Springdale Virtual Training</h3>
           </li>
-
-          <li class="session">
-            <div class="session-meta">
-              <time>Ongoing</time>
-              <span class="session-venue">Michigan</span>
-            </div>
-            <h3 class="session-title"><a href="https://remc.org/" target="_blank" rel="noopener">REMC Partnership &mdash; Google Technical Trainings</a></h3>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Dec</time><span class="session-venue">Virtual</span></div>
+            <h3 class="session-title">Google EDU on Air: Gemini for Education Updates for IT Admins</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Dec</time><span class="session-venue">Forney, TX</span></div>
+            <h3 class="session-title">Chrome/Gemini Technical Workshop</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Nov</time><span class="session-venue">Virtual</span></div>
+            <h3 class="session-title">METAA Webinar Series: Unlocking the Power of Google Vault</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Nov</time><span class="session-venue">Bay City, MI</span></div>
+            <h3 class="session-title">Bay City Area Level 1 Google Admin Bootcamp</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Nov</time><span class="session-venue">Ann Arbor, MI</span></div>
+            <h3 class="session-title">Washtenaw Co. Level 2 Google Admin Bootcamp (REMC)</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Nov</time><span class="session-venue">Wayne, MI</span></div>
+            <h3 class="session-title">Wayne County REMC Level 1 Google Admin Bootcamp</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Nov</time><span class="session-venue">Tulsa, OK</span></div>
+            <h3 class="session-title">OKSTE</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Oct</time><span class="session-venue">Virtual</span></div>
+            <h3 class="session-title">Milwaukee Public Schools: Virtual Full Day Best Practices Workshop</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Oct</time><span class="session-venue">Kalamazoo, MI</span></div>
+            <h3 class="session-title">KRESA (REMC) Level 1 Google Admin Bootcamp</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Sep</time><span class="session-venue">Virtual</span></div>
+            <h3 class="session-title">Google EDU on Air: Data Loss Protection</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Sep</time><span class="session-venue">Clare, MI</span></div>
+            <h3 class="session-title">Clare-Gladwin RESD Level 1 Google Admin Bootcamp</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Sep</time><span class="session-venue">Virtual</span></div>
+            <h3 class="session-title">Virtual Security Summit</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Sep</time><span class="session-venue">Aurora, CO</span></div>
+            <h3 class="session-title">Aurora Level 1 &amp; 2 Google Admin Bootcamps</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Aug</time><span class="session-venue">Monroe, MI</span></div>
+            <h3 class="session-title">REMC Level 1 Google Admin Bootcamp (Monroe County)</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Jul</time><span class="session-venue">Price, UT</span></div>
+            <h3 class="session-title">Southeast Education Service Center Level 1 &amp; 2 Google Admin Bootcamp</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Jul</time><span class="session-venue">Austin, TX</span></div>
+            <h3 class="session-title">Level 1 Google Admin Bootcamp (Sponsored by Lenovo)</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Jun</time><span class="session-venue">Virtual</span></div>
+            <h3 class="session-title">Virtual Level 1 Google Admin Bootcamp</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>May</time><span class="session-venue">Oklahoma City, OK</span></div>
+            <h3 class="session-title">OKC Gemini Workshop</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>May</time><span class="session-venue">Kansas City, MO</span></div>
+            <h3 class="session-title">Peculiar Gemini Workshop</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>May</time><span class="session-venue">Riverside, CA</span></div>
+            <h3 class="session-title">Riverside Gemini Workshop</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Apr</time><span class="session-venue">Pikeville, KY</span></div>
+            <h3 class="session-title">Pikeville Gemini Workshop</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Apr</time><span class="session-venue">San Antonio, TX</span></div>
+            <h3 class="session-title">San Antonio ISD Gemini Workshop</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Apr</time><span class="session-venue">Syracuse, NY</span></div>
+            <h3 class="session-title">Security Summit</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Apr</time><span class="session-venue">Virtual</span></div>
+            <h3 class="session-title">IT-Focused Gemini Session</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Mar</time><span class="session-venue">Virtual</span></div>
+            <h3 class="session-title">Virtual Level 2 Google Admin Bootcamp</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Mar</time><span class="session-venue">Springfield, MO</span></div>
+            <h3 class="session-title">Springfield R-XII School District Level 1 Bootcamp</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Mar</time><span class="session-venue">Wisconsin Dells, WI</span></div>
+            <h3 class="session-title">Brainstorm Wisconsin Dells</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Mar</time><span class="session-venue">Virtual</span></div>
+            <h3 class="session-title">Virtual Security Summit</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Feb</time><span class="session-venue">Austin, TX</span></div>
+            <h3 class="session-title">TCEA</h3>
+          </li>
+          <li class="session" data-year="2025">
+            <div class="session-meta"><time>Jan</time><span class="session-venue">Orlando, FL</span></div>
+            <h3 class="session-title">FETC</h3>
           </li>
 
         </ol>
@@ -234,6 +400,7 @@
 
           <li class="interest">
             <h3 class="interest-name">The Verge</h3>
+            <p class="interest-desc">Tech, science, and culture news with a point of view &mdash; and the parent publication for two of the newsletters below.</p>
             <a class="interest-link" href="https://www.theverge.com" target="_blank" rel="noopener">&rarr; Read</a>
           </li>
 
@@ -257,11 +424,13 @@
 
           <li class="interest">
             <h3 class="interest-name">One Useful Thing <span class="interest-by">by Ethan Mollick</span></h3>
+            <p class="interest-desc">A Wharton professor's running notes on what AI is actually useful for &mdash; practical, classroom-aware, light on hype.</p>
             <a class="interest-link" href="https://www.oneusefulthing.org/" target="_blank" rel="noopener">&rarr; Read</a>
           </li>
 
           <li class="interest">
             <h3 class="interest-name">Dr. Philippa Hardman</h3>
+            <p class="interest-desc">Substack from a learning design researcher &mdash; sharp takes on how AI is reshaping how we teach.</p>
             <a class="interest-link" href="https://drphilippahardman.substack.com/" target="_blank" rel="noopener">&rarr; Read</a>
           </li>
 
@@ -364,7 +533,7 @@
     <div class="container">
       <nav class="footer-nav">
         <a href="#about">About</a>
-        <a href="#sessions">Sessions</a>
+        <a href="#work">Work</a>
         <a href="#stack">Stack</a>
         <a href="#following">Following</a>
         <a href="#connect">Connect</a>
