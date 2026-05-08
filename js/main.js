@@ -45,6 +45,32 @@
     fadeElements.forEach((el) => el.classList.add('visible'));
   }
 
+  // --- Year Filter (Work section) ---
+  const yearFilter = document.querySelector('.year-filter');
+
+  if (yearFilter) {
+    const pills = yearFilter.querySelectorAll('.year-pill');
+    const items = document.querySelectorAll('.session-list .session');
+
+    function applyYearFilter(year) {
+      pills.forEach((p) => {
+        p.setAttribute('aria-pressed', p.dataset.year === year ? 'true' : 'false');
+      });
+      items.forEach((item) => {
+        item.hidden = item.dataset.year !== year;
+      });
+    }
+
+    yearFilter.addEventListener('click', (e) => {
+      const pill = e.target.closest('.year-pill');
+      if (!pill) return;
+      applyYearFilter(pill.dataset.year);
+    });
+
+    const initialPill = yearFilter.querySelector('.year-pill[aria-pressed="true"]');
+    if (initialPill) applyYearFilter(initialPill.dataset.year);
+  }
+
   // --- Active Nav Link Highlight ---
   const sections = document.querySelectorAll('.section');
   const navItems = document.querySelectorAll('.nav-links a');
