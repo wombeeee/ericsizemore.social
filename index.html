@@ -3,22 +3,135 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eric Sizemore — Developer &amp; Writer</title>
-  <meta name="description" content="Eric Sizemore's portfolio — software projects, writing, and social links.">
+  <title>Eric Sizemore — Always testing ideas.</title>
+  <meta name="description" content="Eric Sizemore — Senior Education Consultant at CDW. K12 ed tech, Google Workspace, ChromeOS, Gemini. Always testing ideas.">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Eric Sizemore">
-  <meta property="og:description" content="Developer, writer, and open web enthusiast.">
+  <meta property="og:description" content="Senior Education Consultant at CDW. K12 ed tech, Google Workspace, ChromeOS, Gemini. Always testing ideas.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ericsizemore.social">
 
   <!-- Twitter/Bluesky Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Eric Sizemore">
-  <meta name="twitter:description" content="Developer, writer, and open web enthusiast.">
+  <meta name="twitter:description" content="Senior Education Consultant at CDW. K12 ed tech, Google Workspace, ChromeOS, Gemini. Always testing ideas.">
 
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#fafaf7">
+  <style>
+    /* ============================================
+       ericsizemore.social — Editorial Light
+       ============================================ */
+
+    :root {
+      --bg-primary: #fafaf7;
+      --bg-card: #ffffff;
+      --border: #e5e0d6;
+      --rule: #1a1a1a;
+      --text-primary: #1a1a1a;
+      --text-secondary: #525252;
+      --text-muted: #8a8580;
+      --accent: #007AC1;
+      --accent-hover: #005C91;
+      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+      --max-width: 700px;
+      --radius: 4px;
+      --transition: 0.2s ease;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body { font-family: var(--font-sans); background: var(--bg-primary); color: var(--text-primary); font-size: 1.125rem; line-height: 1.7; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--accent-hover); }
+    img { max-width: 100%; display: block; }
+
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 5rem 0; }
+    .section + .section { border-top: 1px solid var(--border); }
+    .section-title { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2rem; }
+    .section-subtitle { color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 1rem; }
+
+    .header { position: sticky; top: 0; z-index: 100; background: rgba(250, 250, 247, 0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-weight: 700; font-size: 1rem; color: var(--text-primary); letter-spacing: -0.01em; }
+    .nav-logo:hover { color: var(--accent); }
+    .nav-links { display: flex; list-style: none; gap: 2rem; }
+    .nav-links a { color: var(--text-secondary); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.02em; transition: color var(--transition); }
+    .nav-links a:hover { color: var(--text-primary); }
+
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .hamburger, .hamburger::before, .hamburger::after { display: block; width: 20px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: all 0.3s ease; }
+    .hamburger { position: relative; }
+    .hamburger::before, .hamburger::after { content: ''; position: absolute; left: 0; }
+    .hamburger::before { top: -6px; }
+    .hamburger::after { top: 6px; }
+    .nav-toggle[aria-expanded="true"] .hamburger { background: transparent; }
+    .nav-toggle[aria-expanded="true"] .hamburger::before { top: 0; transform: rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] .hamburger::after { top: 0; transform: rotate(-45deg); }
+
+    .hero { padding: 7rem 0 5rem; min-height: 80vh; display: flex; align-items: center; border-bottom: 1px solid var(--border); }
+    .hero-greeting { color: var(--text-muted); font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .hero-name { font-size: clamp(3.25rem, 11vw, 7rem); font-weight: 800; letter-spacing: -0.04em; line-height: 0.95; margin-bottom: 1.5rem; color: var(--text-primary); }
+    .hero-tagline { font-size: 1.375rem; color: var(--text-secondary); max-width: 520px; margin-bottom: 2.5rem; font-weight: 400; line-height: 1.4; }
+    .hero-cta { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    .btn { display: inline-flex; align-items: center; padding: 0.75rem 1.5rem; font-size: 0.875rem; font-weight: 600; font-family: var(--font-sans); letter-spacing: 0.02em; border-radius: var(--radius); transition: all var(--transition); cursor: pointer; border: 1px solid transparent; }
+    .btn-primary { background: var(--text-primary); color: var(--bg-primary); }
+    .btn-primary:hover { background: var(--accent); color: var(--bg-primary); }
+    .btn-outline { border-color: var(--text-primary); color: var(--text-primary); background: transparent; }
+    .btn-outline:hover { background: var(--text-primary); color: var(--bg-primary); }
+
+    .about-content { max-width: 640px; }
+    .about-content p { color: var(--text-primary); margin-bottom: 1rem; font-size: 1.125rem; line-height: 1.7; }
+
+    .session-list, .interest-list { list-style: none; }
+    .session, .interest { padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+    .session:first-child, .interest:first-child { border-top: 1px solid var(--border); }
+    .session-meta { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+    .session-title, .interest-name { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; letter-spacing: -0.01em; color: var(--text-primary); }
+    .session-title a { color: var(--text-primary); }
+    .session-title a:hover { color: var(--accent); }
+    .interest-by { font-weight: 400; color: var(--text-muted); font-size: 0.9rem; }
+    .session-desc, .interest-desc { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.6rem; }
+    .interest-link { font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    .stack-tools { font-size: 1.15rem; color: var(--text-primary); line-height: 1.7; max-width: 600px; }
+
+    .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 1rem; }
+    .social-card { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; padding: 1.75rem 1rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); text-align: center; transition: border-color var(--transition), color var(--transition); }
+    .social-card:hover { border-color: var(--text-primary); }
+    .social-icon { width: 28px; height: 28px; color: var(--text-primary); transition: color var(--transition); }
+    .social-card:hover .social-icon { color: var(--accent); }
+    .social-name { font-weight: 700; font-size: 0.9rem; color: var(--text-primary); letter-spacing: -0.01em; }
+    .social-handle { font-size: 0.75rem; color: var(--text-secondary); font-family: var(--font-mono); }
+
+    .footer { border-top: 1px solid var(--border); padding: 3rem 0; text-align: center; }
+    .footer-nav { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; }
+    .footer-nav a { color: var(--text-secondary); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    .footer-nav a:hover { color: var(--text-primary); }
+    .footer-copy { color: var(--text-muted); font-size: 0.8rem; font-family: var(--font-mono); }
+
+    .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      body { font-size: 1.0625rem; }
+      .nav-toggle { display: block; }
+      .nav-links { position: fixed; top: 64px; left: 0; right: 0; background: var(--bg-primary); border-bottom: 1px solid var(--border); flex-direction: column; padding: 1.5rem; gap: 1rem; transform: translateY(-100%); opacity: 0; pointer-events: none; transition: all 0.3s ease; }
+      .nav-links.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+      .hero { padding: 4.5rem 0 3.5rem; min-height: auto; }
+      .hero-tagline { font-size: 1.2rem; }
+      .section { padding: 3.5rem 0; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-cta { flex-direction: column; }
+      .btn { justify-content: center; }
+    }
+  </style>
 </head>
 <body>
   <!-- Header -->
@@ -30,8 +143,9 @@
       </button>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#writing">Writing</a></li>
+        <li><a href="#sessions">Sessions</a></li>
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#following">Following</a></li>
         <li><a href="#connect">Connect</a></li>
       </ul>
     </nav>
@@ -43,7 +157,7 @@
       <div class="container">
         <p class="hero-greeting fade-in">Hi, I'm</p>
         <h1 class="hero-name fade-in">Eric Sizemore</h1>
-        <p class="hero-tagline fade-in">Developer &amp; Writer — Building on the open web.</p>
+        <p class="hero-tagline fade-in">Always testing ideas.</p>
         <div class="hero-cta fade-in">
           <a href="#projects" class="btn btn-primary">View My Work</a>
           <a href="#connect" class="btn btn-outline">Get in Touch</a>
@@ -57,121 +171,113 @@
         <h2 class="section-title fade-in">About</h2>
         <div class="about-content fade-in">
           <p>
-            I'm a software developer and writer passionate about open source, the open web,
-            and federated social networks. I believe in building tools and communities that
-            put people first.
+            I'm Eric &mdash; Senior Education Consultant at CDW, where I've spent 13 years in K12 ed tech,
+            first as an IT director keeping school networks (and Chromebooks) alive, now training
+            educators and admins on Google Workspace, ChromeOS, and Gemini. 200+ sessions in.
+            I teach from the console, not the bullet point. Outside of work, I chase national parks
+            with my wife Makayla and our dogs, Cooper and Riley. Genuinely curious &mdash; happy to
+            talk WWII history or theology with anyone who'll listen. Sooners 🏈, Thunder 🏀, and
+            firmly convinced printers were sent here to test us.
           </p>
-          <p>
-            When I'm not writing code, you can find me exploring the Fediverse, writing about
-            technology, or contributing to open source projects.
-          </p>
-          <!-- Replace with your real bio -->
         </div>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section class="section section-alt" id="projects">
+    <!-- Sessions & Workshops -->
+    <section class="section" id="sessions">
       <div class="container">
-        <h2 class="section-title fade-in">Projects</h2>
-        <div class="projects-grid">
+        <h2 class="section-title fade-in">Sessions &amp; Workshops</h2>
+        <ol class="session-list fade-in">
 
-          <article class="card fade-in">
-            <h3 class="card-title">
-              <a href="https://github.com/ericsizemore" target="_blank" rel="noopener">Project One</a>
-            </h3>
-            <p class="card-description">
-              A brief description of your project. What it does, why it matters, and what you learned building it.
-            </p>
-            <div class="card-tags">
-              <span class="tag">PHP</span>
-              <span class="tag">Open Source</span>
+          <li class="session">
+            <div class="session-meta">
+              <time>2026</time>
+              <span class="session-venue">AZ &middot; CA &middot; TX &middot; IA &middot; ME &middot; NY</span>
             </div>
-          </article>
+            <h3 class="session-title">Gemini Workshops</h3>
+          </li>
 
-          <article class="card fade-in">
-            <h3 class="card-title">
-              <a href="https://github.com/ericsizemore" target="_blank" rel="noopener">Project Two</a>
-            </h3>
-            <p class="card-description">
-              Another project description. Replace this with real content about your work.
-            </p>
-            <div class="card-tags">
-              <span class="tag">JavaScript</span>
-              <span class="tag">Web</span>
+          <li class="session">
+            <div class="session-meta">
+              <time>2026</time>
+              <span class="session-venue">Wisconsin &middot; Ohio</span>
             </div>
-          </article>
+            <h3 class="session-title">Brainstorm Conferences</h3>
+          </li>
 
-          <article class="card fade-in">
-            <h3 class="card-title">
-              <a href="https://github.com/ericsizemore" target="_blank" rel="noopener">Project Three</a>
-            </h3>
-            <p class="card-description">
-              A third project. Showcase your best work here — open source contributions, side projects, or professional work.
-            </p>
-            <div class="card-tags">
-              <span class="tag">Python</span>
-              <span class="tag">CLI</span>
+          <li class="session">
+            <div class="session-meta">
+              <time>Ongoing</time>
+              <span class="session-venue">Michigan</span>
             </div>
-          </article>
+            <h3 class="session-title"><a href="https://remc.org/" target="_blank" rel="noopener">REMC Partnership &mdash; Google Technical Trainings</a></h3>
+          </li>
 
-          <article class="card fade-in">
-            <h3 class="card-title">
-              <a href="https://github.com/ericsizemore" target="_blank" rel="noopener">Project Four</a>
-            </h3>
-            <p class="card-description">
-              One more project slot. Add or remove cards as needed — the grid adapts automatically.
-            </p>
-            <div class="card-tags">
-              <span class="tag">TypeScript</span>
-              <span class="tag">API</span>
-            </div>
-          </article>
-
-        </div>
+        </ol>
       </div>
     </section>
 
-    <!-- Writing -->
-    <section class="section" id="writing">
+    <!-- Tech Stack -->
+    <section class="section" id="stack">
       <div class="container">
-        <h2 class="section-title fade-in">Writing</h2>
-        <div class="writing-content fade-in">
-          <p>
-            I write about software development, the open web, and technology.
-            Subscribe on Substack to follow along.
-          </p>
-          <div class="writing-links">
-            <a href="#" class="btn btn-primary" target="_blank" rel="noopener">
-              <!-- Replace # with your Substack URL -->
-              Read on Substack
-            </a>
-          </div>
-        </div>
+        <h2 class="section-title fade-in">Tech Stack</h2>
+        <p class="stack-tools fade-in">Chromebook &middot; ChromeOS &middot; Google Workspace &middot; Gemini &middot; Slides &middot; Meet &middot; Classroom &middot; Forms</p>
+      </div>
+    </section>
 
-        <div class="featured-posts fade-in">
-          <h3>Featured Posts</h3>
-          <ul class="post-list">
-            <li>
-              <a href="#" target="_blank" rel="noopener">
-                <span class="post-title">Your First Post Title</span>
-                <span class="post-date">2026</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" target="_blank" rel="noopener">
-                <span class="post-title">Another Post Title</span>
-                <span class="post-date">2026</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" target="_blank" rel="noopener">
-                <span class="post-title">A Third Post Title</span>
-                <span class="post-date">2025</span>
-              </a>
-            </li>
-          </ul>
-        </div>
+    <!-- Things I'm Into -->
+    <section class="section" id="following">
+      <div class="container">
+        <h2 class="section-title fade-in">Things I'm Into</h2>
+        <p class="section-subtitle fade-in">Newsletters, podcasts, and other things worth your attention.</p>
+        <ul class="interest-list fade-in">
+
+          <li class="interest">
+            <h3 class="interest-name">The Verge</h3>
+            <a class="interest-link" href="https://www.theverge.com" target="_blank" rel="noopener">&rarr; Read</a>
+          </li>
+
+          <li class="interest">
+            <h3 class="interest-name">Installer <span class="interest-by">by David Pierce</span></h3>
+            <p class="interest-desc">A weekly newsletter telling you everything you need to download, watch, read, listen to, and explore that fits in The Verge's universe.</p>
+            <a class="interest-link" href="https://www.theverge.com/installer-newsletter" target="_blank" rel="noopener">&rarr; Read</a>
+          </li>
+
+          <li class="interest">
+            <h3 class="interest-name">Notepad <span class="interest-by">by Tom Warren</span></h3>
+            <p class="interest-desc">A weekly window into Microsoft's era-defining bets on AI, gaming, and the future of computing.</p>
+            <a class="interest-link" href="https://www.theverge.com/notepad-microsoft-newsletter" target="_blank" rel="noopener">&rarr; Read</a>
+          </li>
+
+          <li class="interest">
+            <h3 class="interest-name">Prof G Markets <span class="interest-by">by Ed Elson &amp; Scott Galloway</span></h3>
+            <p class="interest-desc">Breaks down the news moving capital markets — financial literacy and economic security, with personality.</p>
+            <a class="interest-link" href="https://www.profgmedia.com" target="_blank" rel="noopener">&rarr; Listen</a>
+          </li>
+
+          <li class="interest">
+            <h3 class="interest-name">One Useful Thing <span class="interest-by">by Ethan Mollick</span></h3>
+            <a class="interest-link" href="https://www.oneusefulthing.org/" target="_blank" rel="noopener">&rarr; Read</a>
+          </li>
+
+          <li class="interest">
+            <h3 class="interest-name">Dr. Philippa Hardman</h3>
+            <a class="interest-link" href="https://drphilippahardman.substack.com/" target="_blank" rel="noopener">&rarr; Read</a>
+          </li>
+
+          <li class="interest">
+            <h3 class="interest-name">Ark Media</h3>
+            <p class="interest-desc">A podcast network focused on spirited debate and learning about Jewish life, Israel, the Middle East, and our larger geopolitics.</p>
+            <a class="interest-link" href="https://arkmedia.org/" target="_blank" rel="noopener">&rarr; Listen</a>
+          </li>
+
+          <li class="interest">
+            <h3 class="interest-name">Hard Fork <span class="interest-by">by Kevin Roose &amp; Casey Newton</span></h3>
+            <p class="interest-desc">Each week, exploring and making sense of the rapidly changing world of tech.</p>
+            <a class="interest-link" href="https://www.nytimes.com/column/hard-fork" target="_blank" rel="noopener">&rarr; Listen</a>
+          </li>
+
+        </ul>
       </div>
     </section>
 
@@ -183,12 +289,12 @@
 
         <div class="social-grid">
 
-          <a href="https://github.com/ericsizemore" class="social-card fade-in" target="_blank" rel="noopener">
+          <a href="https://github.com/wombeeee" class="social-card fade-in" target="_blank" rel="noopener">
             <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
             </svg>
             <span class="social-name">GitHub</span>
-            <span class="social-handle">@ericsizemore</span>
+            <span class="social-handle">@wombeeee</span>
           </a>
 
           <a href="https://bsky.app/profile/ericsizemore.social" class="social-card fade-in" target="_blank" rel="noopener">
@@ -199,29 +305,44 @@
             <span class="social-handle">@ericsizemore.social</span>
           </a>
 
-          <a href="https://mastodon.social/@ericsizemore" class="social-card fade-in" target="_blank" rel="me noopener">
+          <a href="https://x.com/theericsizemore" class="social-card fade-in" target="_blank" rel="noopener">
             <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 00.023-.043v-1.809a.052.052 0 00-.02-.041.053.053 0 00-.046-.01 20.282 20.282 0 01-4.709.547c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 01-.319-1.433.053.053 0 01.066-.054 19.648 19.648 0 004.636.546h.347c1.587 0 3.19-.1 4.751-.367 1.724-.292 3.229-1.152 3.401-5.676.066-1.381.057-2.689.057-3.837 0-.974.042-1.95-.003-2.906zM19.725 12.54h-2.77V7.63c0-1.164-.494-1.755-1.483-1.755-1.094 0-1.641.7-1.641 2.088v2.676h-2.753V7.963c0-1.388-.547-2.088-1.641-2.088-.988 0-1.483.591-1.483 1.755v4.91H5.183c0-2.51-.063-4.563.158-5.226.397-1.378 1.56-2.186 3.137-2.186 1.388 0 2.408.592 3.043 1.776L12 7.57l.479-.666c.635-1.184 1.655-1.776 3.043-1.776 1.577 0 2.74.808 3.137 2.186.221.663.158 2.716.158 5.226h-.092z"/>
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
             </svg>
-            <span class="social-name">Mastodon</span>
+            <span class="social-name">X</span>
+            <span class="social-handle">@theericsizemore</span>
+          </a>
+
+          <a href="https://instagram.com/eric_sizemore" class="social-card fade-in" target="_blank" rel="noopener">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zM12 16c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+            <span class="social-name">Instagram</span>
+            <span class="social-handle">@eric_sizemore</span>
+          </a>
+
+          <a href="https://threads.net/@eric_sizemore" class="social-card fade-in" target="_blank" rel="noopener">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.781 3.631 2.695 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.32.143 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/>
+            </svg>
+            <span class="social-name">Threads</span>
+            <span class="social-handle">@eric_sizemore</span>
+          </a>
+
+          <a href="https://youtube.com/@ericsizemore" class="social-card fade-in" target="_blank" rel="noopener">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            <span class="social-name">YouTube</span>
             <span class="social-handle">@ericsizemore</span>
           </a>
 
-          <a href="https://linkedin.com/in/ericsizemore" class="social-card fade-in" target="_blank" rel="noopener">
-            <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-            <span class="social-name">LinkedIn</span>
-            <span class="social-handle">Eric Sizemore</span>
-          </a>
-
-          <a href="#" class="social-card fade-in" target="_blank" rel="noopener">
-            <!-- Replace # with your Substack URL -->
+          <a href="https://ericsizemore.substack.com" class="social-card fade-in" target="_blank" rel="noopener">
             <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24l9.6-5.55 9.6 5.55V10.812H1.46zm21.08-8.648H1.46V0h21.08v2.164z"/>
             </svg>
             <span class="social-name">Substack</span>
-            <span class="social-handle">Subscribe</span>
+            <span class="social-handle">@ericsizemore</span>
           </a>
 
           <a href="mailto:hello@ericsizemore.social" class="social-card fade-in">
@@ -243,8 +364,9 @@
     <div class="container">
       <nav class="footer-nav">
         <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#writing">Writing</a>
+        <a href="#sessions">Sessions</a>
+        <a href="#stack">Stack</a>
+        <a href="#following">Following</a>
         <a href="#connect">Connect</a>
       </nav>
       <p class="footer-copy">&copy; 2026 Eric Sizemore. All rights reserved.</p>
