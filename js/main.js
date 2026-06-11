@@ -71,6 +71,47 @@
     if (initialPill) applyYearFilter(initialPill.dataset.year);
   }
 
+  // --- Writing: latest posts from Substack (via the /api/posts Worker) ---
+  const postList = document.querySelector('.post-list');
+
+  if (postList) {
+    const FALLBACK =
+      '<li class="post"><p class="session-desc">Can&rsquo;t reach the feed right now &mdash; ' +
+      '<a href="https://ericsizemore.substack.com/archive" target="_blank" rel="noopener">read everything on Substack</a>.</p></li>';
+
+    const escapeHtml = (value) =>
+      String(value).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+    const formatDate = (value) => {
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return '';
+      return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    };
+
+    const renderPost = (post) => {
+      const date = formatDate(post.date);
+      return (
+        '<li class="post">' +
+        '<div class="session-meta">' + (date ? '<time>' + date + '</time>' : '') + '<span>Substack</span></div>' +
+        '<h3 class="post-title"><a href="' + escapeHtml(post.link) + '" target="_blank" rel="noopener">' + escapeHtml(post.title) + '</a></h3>' +
+        (post.snippet ? '<p class="session-desc">' + escapeHtml(post.snippet) + '</p>' : '') +
+        '</li>'
+      );
+    };
+
+    fetch('/api/posts')
+      .then((res) => (res.ok ? res.json() : Promise.reject(new Error('HTTP ' + res.status))))
+      .then((data) => {
+        const posts = (data.posts || []).filter(
+          (p) => p && p.title && typeof p.link === 'string' && p.link.indexOf('https://') === 0
+        );
+        postList.innerHTML = posts.length ? posts.map(renderPost).join('') : FALLBACK;
+      })
+      .catch(() => {
+        postList.innerHTML = FALLBACK;
+      });
+  }
+
   // --- Active Nav Link Highlight ---
   const sections = document.querySelectorAll('.section');
   const navItems = document.querySelectorAll('.nav-links a');
