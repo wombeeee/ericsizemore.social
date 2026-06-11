@@ -1,1 +1,3 @@
 data/
+worker.js
+wrangler.jsonc

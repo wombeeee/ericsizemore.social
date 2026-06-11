@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eric Sizemore — Always testing ideas.</title>
-  <meta name="description" content="Eric Sizemore — Senior Education Consultant at CDW. K12 ed tech, Google Workspace, ChromeOS, Gemini. Always testing ideas.">
+  <meta name="description" content="Eric Sizemore — K12 ed tech and AI. Writing, projects, and 200+ sessions on Google Workspace, ChromeOS, and Gemini. Always testing ideas.">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Eric Sizemore">
-  <meta property="og:description" content="Senior Education Consultant at CDW. K12 ed tech, Google Workspace, ChromeOS, Gemini. Always testing ideas.">
+  <meta property="og:description" content="K12 ed tech and AI. Writing, projects, and 200+ sessions on Google Workspace, ChromeOS, and Gemini. Always testing ideas.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ericsizemore.social">
   <meta property="og:image" content="https://ericsizemore.social/assets/social-card.png">
@@ -19,7 +19,7 @@
   <!-- Twitter/Bluesky Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Eric Sizemore">
-  <meta name="twitter:description" content="Senior Education Consultant at CDW. K12 ed tech, Google Workspace, ChromeOS, Gemini. Always testing ideas.">
+  <meta name="twitter:description" content="K12 ed tech and AI. Writing, projects, and 200+ sessions on Google Workspace, ChromeOS, and Gemini. Always testing ideas.">
   <meta name="twitter:image" content="https://ericsizemore.social/assets/social-card.png">
 
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -63,7 +63,7 @@
     .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
     .nav-logo { font-weight: 700; font-size: 1rem; color: var(--text-primary); letter-spacing: -0.01em; }
     .nav-logo:hover { color: var(--accent); }
-    .nav-links { display: flex; list-style: none; gap: 2rem; }
+    .nav-links { display: flex; list-style: none; gap: 1.5rem; }
     .nav-links a { color: var(--text-secondary); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.02em; transition: color var(--transition); }
     .nav-links a:hover { color: var(--text-primary); }
 
@@ -110,6 +110,19 @@
     .session-desc, .interest-desc { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.6rem; }
     .interest-link { font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; }
 
+    .post-list { list-style: none; border-top: 1px solid var(--border); }
+    .post { padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+    .post-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.45; margin-bottom: 0.35rem; }
+    .post-title a { color: var(--text-primary); }
+    .post-title a:hover { color: var(--accent); }
+    .post .session-desc { margin-bottom: 0; }
+    .writing-cta { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2.25rem; }
+
+    .lab-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 2rem; border-top: 1px solid var(--border); }
+    .lab-item { padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+    .lab-status { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .lab-status-shipped { color: var(--accent); }
+
     .stack-tools { font-size: 1.15rem; color: var(--text-primary); line-height: 1.7; max-width: 600px; }
 
     .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 1rem; }
@@ -121,7 +134,7 @@
     .social-handle { font-size: 0.75rem; color: var(--text-secondary); font-family: var(--font-mono); }
 
     .footer { border-top: 1px solid var(--border); padding: 3rem 0; text-align: center; }
-    .footer-nav { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; }
+    .footer-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2rem; margin-bottom: 1.5rem; }
     .footer-nav a { color: var(--text-secondary); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; }
     .footer-nav a:hover { color: var(--text-primary); }
     .footer-copy { color: var(--text-muted); font-size: 0.8rem; font-family: var(--font-mono); }
@@ -137,11 +150,11 @@
       .hero { padding: 4.5rem 0 3.5rem; min-height: auto; }
       .hero-tagline { font-size: 1.2rem; }
       .section { padding: 3.5rem 0; }
-      .session-list, .interest-list { grid-template-columns: 1fr; column-gap: 0; }
+      .session-list, .interest-list, .lab-list { grid-template-columns: 1fr; column-gap: 0; }
     }
 
     @media (max-width: 480px) {
-      .hero-cta { flex-direction: column; }
+      .hero-cta, .writing-cta { flex-direction: column; }
       .btn { justify-content: center; }
     }
   </style>
@@ -156,6 +169,8 @@
       </button>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
+        <li><a href="#writing">Writing</a></li>
+        <li><a href="#lab">Lab</a></li>
         <li><a href="#work">Work</a></li>
         <li><a href="#stack">Stack</a></li>
         <li><a href="#following">Following</a></li>
@@ -172,7 +187,7 @@
         <h1 class="hero-name fade-in">Eric Sizemore</h1>
         <p class="hero-tagline fade-in">Always testing ideas.</p>
         <div class="hero-cta fade-in">
-          <a href="#work" class="btn btn-primary">View My Work</a>
+          <a href="#writing" class="btn btn-primary">What I'm Writing</a>
           <a href="#connect" class="btn btn-outline">Get in Touch</a>
         </div>
       </div>
@@ -186,8 +201,13 @@
           <p>
             Always testing ideas &mdash; for thirteen years that's mostly meant K12 ed tech.
             Came up as an IT director (school networks, Chromebooks, the printer wars), now
-            spend my days at CDW training educators and admins on Google Workspace, ChromeOS,
-            and Gemini. 200+ sessions in. I teach from the console, not the bullet point.
+            lead an onboarding &amp; enablement team at CDW &mdash; still teaching from the
+            console, not the bullet point, 200+ sessions in.
+          </p>
+          <p>
+            Lately the ideas under test are about AI: what it actually changes in schools, in
+            knowledge work, and in how a team runs. The <a href="#writing">writing</a> and
+            <a href="#lab">experiments</a> here are where I work that out in public.
           </p>
           <p>
             Beyond work, &ldquo;testing ideas&rdquo; is just being curious out loud. National
@@ -195,6 +215,53 @@
             arguments. Sooners 🏈, Thunder 🏀 &mdash; record optional.
           </p>
         </div>
+      </div>
+    </section>
+
+    <!-- Writing -->
+    <section class="section" id="writing">
+      <div class="container">
+        <h2 class="section-title fade-in">Writing</h2>
+        <p class="section-subtitle fade-in">Essays and field notes on AI, ed tech, and the people in between. Posts land on Substack first.</p>
+        <ol class="post-list fade-in" aria-label="Latest posts">
+          <li class="post">
+            <p class="session-desc">Loading the latest posts&hellip;</p>
+          </li>
+        </ol>
+        <div class="writing-cta fade-in">
+          <a href="https://ericsizemore.substack.com/subscribe" class="btn btn-primary" target="_blank" rel="noopener">Subscribe on Substack</a>
+          <a href="https://ericsizemore.substack.com/archive" class="btn btn-outline" target="_blank" rel="noopener">Browse the Archive</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lab -->
+    <section class="section" id="lab">
+      <div class="container">
+        <h2 class="section-title fade-in">Lab</h2>
+        <p class="section-subtitle fade-in">Experiments in various states of shipped &mdash; ideas don't test themselves.</p>
+        <ul class="lab-list fade-in">
+
+          <li class="lab-item">
+            <p class="lab-status lab-status-shipped">Shipped</p>
+            <h3 class="interest-name">This site</h3>
+            <p class="interest-desc">A hand-built, no-framework home base on Cloudflare Workers. The Writing feed above is pulled live from my Substack by a tiny Worker &mdash; built in collaboration with Claude.</p>
+            <a class="interest-link" href="https://github.com/wombeeee/ericsizemore.social" target="_blank" rel="noopener">&rarr; Source</a>
+          </li>
+
+          <li class="lab-item">
+            <p class="lab-status">In the works</p>
+            <h3 class="interest-name">Gemini onboarding playbook</h3>
+            <p class="interest-desc">A district-ready guide to rolling out Gemini for Education &mdash; what to turn on, what to lock down, and what to tell the cabinet. Distilled from two years of workshops.</p>
+          </li>
+
+          <li class="lab-item">
+            <p class="lab-status">In the works</p>
+            <h3 class="interest-name">K12 admin prompt library</h3>
+            <p class="interest-desc">Prompts that earn their keep for Workspace admins &mdash; audits, policy checks, parent comms &mdash; tested in real consoles, not demo tenants.</p>
+          </li>
+
+        </ul>
       </div>
     </section>
 
@@ -441,7 +508,7 @@
     <section class="section" id="stack">
       <div class="container">
         <h2 class="section-title fade-in">Tech Stack</h2>
-        <p class="stack-tools fade-in">Chromebook &middot; ChromeOS &middot; Google Workspace &middot; Gemini &middot; Slides &middot; Meet &middot; Classroom &middot; Forms</p>
+        <p class="stack-tools fade-in">Chromebook &middot; ChromeOS &middot; Google Workspace &middot; Gemini &middot; Claude &middot; NotebookLM &middot; Slides &middot; Meet &middot; Classroom &middot; Forms</p>
       </div>
     </section>
 
@@ -587,6 +654,8 @@
     <div class="container">
       <nav class="footer-nav">
         <a href="#about">About</a>
+        <a href="#writing">Writing</a>
+        <a href="#lab">Lab</a>
         <a href="#work">Work</a>
         <a href="#stack">Stack</a>
         <a href="#following">Following</a>
