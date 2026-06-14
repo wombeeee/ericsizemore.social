@@ -3,6 +3,38 @@
 (function () {
   'use strict';
 
+  // --- Theme Toggle (dark "forest" / light "limestone") ---
+  // Initial theme is set pre-paint by the inline <head> script; this wires the switch.
+  const root = document.documentElement;
+  const themeTog = document.getElementById('themeTog');
+
+  function syncToggle() {
+    if (!themeTog) return;
+    themeTog.setAttribute('aria-checked', root.getAttribute('data-theme') === 'dark' ? 'true' : 'false');
+  }
+
+  if (themeTog) {
+    syncToggle();
+    themeTog.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('es-theme', next); } catch (e) { /* private mode */ }
+      syncToggle();
+    });
+  }
+
+  // Follow the OS theme until the user makes a manual choice.
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+      let saved = null;
+      try { saved = localStorage.getItem('es-theme'); } catch (err) { /* ignore */ }
+      if (saved !== 'dark' && saved !== 'light') {
+        root.setAttribute('data-theme', e.matches ? 'light' : 'dark');
+        syncToggle();
+      }
+    });
+  }
+
   // --- Mobile Nav Toggle ---
   const navToggle = document.querySelector('.nav-toggle');
   const navLinks = document.querySelector('.nav-links');
