@@ -55,6 +55,20 @@
     });
   }
 
+  // --- Logo → scroll to the very top ---
+  // The sticky header makes a bare #top anchor land short, so drive it explicitly.
+  const navLogo = document.querySelector('.logo');
+  if (navLogo) {
+    navLogo.addEventListener('click', (e) => {
+      e.preventDefault();
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+    });
+  }
+
   // --- Scroll-triggered Fade-in ---
   const fadeElements = document.querySelectorAll('.fade-in');
 
