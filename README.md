@@ -1,7 +1,8 @@
-# ericsizemore.social
+# ericsizemore.tech
 
-Personal site for Eric Sizemore — K12 ed tech and AI. Writing, projects, and a
-running archive of speaking work. Live at **[ericsizemore.social](https://ericsizemore.social)**.
+Personal site for Eric Sizemore — K12 ed tech and AI. Writing, resources, and a
+running archive of speaking work. Live at **[ericsizemore.tech](https://ericsizemore.tech)**
+(the former ericsizemore.social, which now redirects here).
 
 A hand-built, single-page site with **no build step** — just HTML, CSS, and a
 little vanilla JS — served from a small Cloudflare Worker. The console-wordmark
