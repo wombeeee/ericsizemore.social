@@ -1,0 +1,12 @@
+{
+  "name": "ericsizemore.tech",
+  "private": true,
+  "description": "Personal site for Eric Sizemore — served by a Cloudflare Worker. Wrangler is pinned exactly: 4.121.0 ships a broken dependency (miniflare@5.20260804.1-alpha does not exist on npm), which breaks `npx wrangler` and Workers Builds. Bump deliberately once a fixed release ships.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "4.120.1"
+  }
+}
