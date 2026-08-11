@@ -7,8 +7,16 @@ const MAX_POSTS = 5;
 
 export default {
   async fetch(request, env) {
-    const { pathname } = new URL(request.url);
-    if (pathname === '/api/posts') {
+    const url = new URL(request.url);
+
+    // Canonical host is ericsizemore.tech — permanently redirect the old domain,
+    // preserving path and query so existing links and search results carry over.
+    if (url.hostname === 'ericsizemore.social' || url.hostname === 'www.ericsizemore.social') {
+      url.hostname = 'ericsizemore.tech';
+      return Response.redirect(url.toString(), 301);
+    }
+
+    if (url.pathname === '/api/posts') {
       return postsResponse();
     }
     return env.ASSETS.fetch(request);
