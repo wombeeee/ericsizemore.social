@@ -1,3 +1,7 @@
 data/
 worker.js
 wrangler.jsonc
+node_modules/
+package.json
+package-lock.json
+README.md
