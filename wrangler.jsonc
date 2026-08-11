@@ -8,7 +8,11 @@
   },
   "assets": {
     "directory": ".",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    // Invoke the Worker before serving static assets — required so the
+    // ericsizemore.social → ericsizemore.tech redirect runs on page URLs,
+    // not just non-asset paths. env.ASSETS.fetch still serves the files.
+    "run_worker_first": true
   },
   "compatibility_flags": [
     "nodejs_compat"
