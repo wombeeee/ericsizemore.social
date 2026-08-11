@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini Prompt Library for K12 Admins — Eric Sizemore</title>
+  <meta name="description" content="A curated, copy-ready set of Gemini prompts for K-12 IT admins and tech directors — policy drafts, family communications, audits, Vault, and rollout planning.">
+  <link rel="canonical" href="https://ericsizemore.social/resources/gemini-prompt-library/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Gemini Prompt Library for K12 Admins">
+  <meta property="og:description" content="Copy-ready Gemini prompts for the real work of running a district — policy drafts, family comms, audits, Vault, and rollout planning.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ericsizemore.social/resources/gemini-prompt-library/">
+  <meta property="og:image" content="https://ericsizemore.social/assets/social-card.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gemini Prompt Library for K12 Admins">
+  <meta name="twitter:description" content="Copy-ready Gemini prompts for the real work of running a district — policy drafts, family comms, audits, Vault, and rollout planning.">
+  <meta name="twitter:image" content="https://ericsizemore.social/assets/social-card.png">
+
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0e140e" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ece8d9" media="(prefers-color-scheme: light)">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Set theme before paint: stored override wins, else system preference -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('es-theme');
+        var theme = (saved === 'dark' || saved === 'light')
+          ? saved
+          : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="/css/site.css">
+  <style>
+    /* ---- Prompt-library page styles (page-specific) ---- */
+    .crumb { font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin: 2.5rem 0 0; }
+    .crumb a { color: var(--text-muted); }
+    .crumb a:hover { color: var(--logo-mark); }
+
+    .lib-head { padding: 1.5rem 0 3rem; border-bottom: 1px solid var(--border); }
+    .lib-title { font-size: clamp(1.7rem, 5vw, 2.4rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin: 0.75rem 0 1.25rem; }
+    .lib-intro { color: var(--text-secondary); max-width: 640px; margin-bottom: 1.5rem; }
+    .lib-meta { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); }
+
+    .lib-rules { margin: 2rem 0 0; padding: 1.25rem 1.5rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); max-width: 640px; }
+    .lib-rules h2 { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-muted); margin-bottom: 0.75rem; }
+    .lib-rules li { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0.4rem 0 0.4rem 1.2rem; }
+    .lib-rules b { color: var(--text-primary); font-weight: 600; }
+
+    .toc { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 2rem 0 0; }
+    .toc a { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.45rem 0.9rem; }
+    .toc a:hover { color: var(--text-primary); border-color: var(--text-primary); }
+
+    .cat { padding: 3.25rem 0 0.5rem; }
+    .cat-title { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .cat-title .n { color: var(--logo-mark); margin-right: 0.5em; }
+    .cat-sub { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.75rem; max-width: 620px; }
+
+    .prompt { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.4rem 1.5rem 1.5rem; margin-bottom: 1.25rem; }
+    .prompt-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.35rem; }
+    .prompt-name { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.4; }
+    .copy-btn { flex: 0 0 auto; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); background: none; border: 1px solid var(--border); border-radius: var(--radius); padding: 0.4rem 0.8rem; cursor: pointer; transition: all var(--transition); }
+    .copy-btn:hover { color: var(--text-primary); border-color: var(--text-primary); }
+    .copy-btn.done { color: var(--accent-ink); background: var(--accent); border-color: var(--accent); }
+    .prompt-when { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem; }
+    .prompt-text { font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.65; color: var(--text-secondary); white-space: pre-wrap; overflow-wrap: break-word; background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.2rem; margin: 0; }
+    .prompt-text b { color: var(--text-primary); font-weight: 500; }
+
+    .lib-foot { padding: 3rem 0 1rem; color: var(--text-secondary); font-size: 0.95rem; max-width: 640px; }
+    .lib-foot a { border-bottom: 1.5px solid var(--accent); }
+    .lib-foot a:hover { color: var(--logo-mark); }
+
+    @media (max-width: 480px) {
+      .prompt-head { flex-direction: column; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header (compact: logo home + theme toggle) -->
+  <header class="header">
+    <nav class="nav container">
+      <a href="/" class="logo" aria-label="Eric Sizemore — home">
+        <span class="chev" aria-hidden="true">&#10095;</span><span class="word">eric sizemore</span>
+      </a>
+      <div class="nav-right">
+        <button class="theme-tog" id="themeTog" type="button" role="switch" aria-checked="false" aria-label="Toggle dark and light mode">
+          <span class="knob"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <p class="crumb"><a href="/#resources">&larr; Resources</a></p>
+
+      <header class="lib-head">
+        <h1 class="lib-title">Gemini prompt library for K12 admins</h1>
+        <p class="lib-intro">
+          Copy-ready prompts for the real work of running a district in Google Workspace &mdash;
+          policy drafts, family communications, audits, Vault, and rollout planning. Curated from
+          the material I teach in Gemini workshops and admin bootcamps, and updated as the tools change.
+        </p>
+        <p class="lib-meta">15 prompts &middot; 5 categories &middot; Updated August 2026</p>
+
+        <div class="lib-rules">
+          <h2>How to use these</h2>
+          <ul>
+            <li><b>Swap the [BRACKETS]</b> for your district's specifics &mdash; the more context, the better the draft.</li>
+            <li><b>Paste into Gemini</b> &mdash; the app, or the side panel in Docs, Sheets, or Gmail.</li>
+            <li><b>You're the editor.</b> Treat every output as a first draft. Verify claims, especially anything legal or board-facing.</li>
+            <li><b>Mind the data.</b> Never put student PII into a consumer AI tool. Inside your Workspace tenant with Gemini for Education's data protections, follow your district's data-governance policy &mdash; and when in doubt, de-identify.</li>
+          </ul>
+        </div>
+
+        <nav class="toc" aria-label="Categories">
+          <a href="#policy">Policy &amp; Governance</a>
+          <a href="#comms">Family &amp; Staff Comms</a>
+          <a href="#data">Audits &amp; Data</a>
+          <a href="#vault">Vault &amp; Compliance</a>
+          <a href="#rollout">Rollout &amp; Training</a>
+        </nav>
+      </header>
+
+      <!-- ==================== 1. POLICY & GOVERNANCE ==================== -->
+      <section class="cat" id="policy">
+        <h2 class="cat-title"><span class="n">01</span>Policy &amp; Governance</h2>
+        <p class="cat-sub">For the moment the board says &ldquo;we need an AI policy&rdquo; and the moment a release note changes your Tuesday.</p>
+
+        <article class="prompt">
+          <div class="prompt-head">
+            <h3 class="prompt-name">Responsible-AI addendum for your staff AUP</h3>
+            <button class="copy-btn" type="button">Copy</button>
+          </div>
+          <p class="prompt-when">Use when: leadership asks for &ldquo;an AI policy&rdquo; and you need a draft grounded in the policy you already have.</p>
+          <pre class="prompt-text">Act as a K-12 technology policy writer. Draft a one-page addendum to our staff Acceptable Use Policy covering generative AI (Gemini for Education).
+
+District context: [NAME, ENROLLMENT, GRADES SERVED].
+
+Cover: which tools are approved, student-data rules (FERPA/COPPA — no student PII in unapproved tools), required human review of AI output, expectations for staff modeling responsible use with students, and how violations tie back to the existing AUP.
+
+Match the tone and structure of our current AUP, pasted below. Plain English, board-review ready.
+
+[PASTE CURRENT AUP]</pre>
+        </article>
+
+        <article class="prompt">
+          <div class="prompt-head">
+            <h3 class="prompt-name">Board one-pager: what Gemini for Education is (and isn't)</h3>
+            <button class="copy-btn" type="button">Copy</button>
+          </div>
+          <p class="prompt-when">Use when: you have five minutes on a board agenda and need every word to count.</p>
+          <pre class="prompt-text">Write a one-page brief for a school board on Gemini for Education.
+
+Our context: edition [EDITION / LICENSE TIER], [ENROLLMENT] students, rollout stage: [PILOT / STAFF ONLY / STUDENTS 13+ / ALL].
+
+Explain in neutral, non-hype language: what's included at our tier, what data protections apply, what admins control (who has access, managed by organizational unit), and what students and staff will actually see.
+
+End with the three decisions we're asking the board to weigh in on: [DECISION 1], [DECISION 2], [DECISION 3].
+
+Flag any claim I should verify against Google's admin documentation before presenting.</pre>
+        </article>
+
+        <article class="prompt">
+          <div class="prompt-head">
+            <h3 class="prompt-name">Release note &rarr; district impact memo</h3>
+            <button class="copy-btn" type="button">Copy</button>
+          </div>
+          <p class="prompt-when">Use when: a Workspace update lands and you need to know if it's a nothing or a Tuesday-ruiner.</p>
+          <pre class="prompt-text">Here's a Google Workspace release note: [PASTE RELEASE NOTE].
+
+Write a short impact memo for a K-12 IT team: what changed, who it affects in a district like ours ([SIZE, DEVICE FLEET, WHAT'S CURRENTLY ENABLED]), which admin settings to review, what — if anything — to communicate to staff, and a recommended action with a timeline.
+
+If the change is low-impact for us, say so plainly. Don't manufacture urgency.</pre>
+        </article>
+      </section>
+
+      <!-- ==================== 2. FAMILY & STAFF COMMS ==================== -->
+      <section class="cat" id="comms">
+        <h2 class="cat-title"><span class="n">02</span>Family &amp; Staff Communications</h2>
+        <p class="cat-sub">The rollout succeeds or fails in the comms, not the console.</p>
+
+        <article class="prompt">
+          <div class="prompt-head">
+            <h3 class="prompt-name">Parent &amp; guardian letter: we're turning on Gemini</h3>
+            <button class="copy-btn" type="button">Copy</button>
+          </div>
+          <p class="prompt-when">Use when: Gemini access is about to go live and families should hear it from you first.</p>
+          <pre class="prompt-text">Draft a letter to parents and guardians announcing that [DISTRICT NAME] is enabling Gemini for Education for [GRADE BANDS / STAFF ONLY].
+
+Cover: what Gemini is in plain terms, why we're doing this, the protections in place (age-appropriate access controls, no ads, our data-privacy commitments), what it means in the classroom, and who to contact with questions: [CONTACT].
+
+Reading level: about 8th grade. Warm but straightforward — no tech jargon, no hype. Keep it under a page so it translates cleanly into [LANGUAGES].</pre>
+        </article>
+
+        <article class="prompt">
+          <div class="prompt-head">
+            <h3 class="prompt-name">Staff FAQ for launch week</h3>
+            <button class="copy-btn" type="button">Copy</button>
+          </div>
+          <p class="prompt-when">Use when: the tool goes live Monday and you'd rather answer the top ten questions once.</p>
+          <pre class="prompt-text">Create a one-page FAQ for teachers and staff for the week Gemini for Education goes live.
+
+Anticipate the ten questions they'll actually ask — what it is, what it can and can't see, whether student data is safe, whether they're required to use it, how it shows up in Docs, Gmail, and Sheets, and what responsible use looks like with students in the room.
+
+Answer honestly and briefly, using our district specifics: [PASTE KEY POLICY POINTS / SETTINGS DECISIONS].</pre>
+        </article>
+
+        <article class="prompt">
+          <div class="prompt-head">
+            <h3 class="prompt-name">Incident update: staff and family versions</h3>
+            <button class="copy-btn" type="button">Copy</button>
+          </div>
+          <p class="prompt-when">Use when: something happened, phones are ringing, and calm beats fast-but-sloppy.</p>
+          <pre class="prompt-text">We had a security incident: [SHORT FACTUAL SUMMARY — e.g., a phishing email captured several staff passwords; no student systems affected].
+
+Draft two versions of an update: one for staff, one for families.
+
+Both: calm, factual, no jargon, no blame. What happened, what we've already done, what we're asking you to do, and where updates will come from. Do not speculate beyond the facts I gave you.
+
+Flag anything that sounds legally risky so I can run it past leadership first.</pre>
+        </article>
+      </section>
+
+      <!-- ==================== 3. AUDITS & DATA ==================== -->
+      <section class="cat" id="data">
+        <h2 class="cat-title"><span class="n">03</span>Audits &amp; Data Work</h2>
+        <p class="cat-sub">Export from the Admin console, open in Sheets, let Gemini do the grouping and counting &mdash; you do the judgment.</p>
+
+        <article class="prompt">
+          <div class="prompt-head">
+            <h3 class="prompt-name">Inactive-account sweep</h3>
+            <button class="copy-btn" type="button">Copy</button>
+          </div>
+          <p class="prompt-when">Use in: Gemini in Sheets, on a user-list export from the Admin console.</p>
+          <pre class="prompt-text">This Sheet is a user-list export from our Google Admin console.
+
+Using the last-sign-in column, help me: flag accounts with no sign-in for 90+ days, group them by organizational unit, and build a summary table of counts per school.
+
+Then draft a short note to site techs explaining what we're checking, the accounts we'll review for deprovisioning, and what happens next.</pre>
+        </article>
+
+        <article class="prompt">
+          <div class="prompt-head">
+            <h3 class="prompt-name">ChromeOS fleet aging &amp; replacement budget</h3>
+            <button class="copy-btn" type="button">Copy</button>
+          </div>
+          <p class="prompt-when">Use in: Gemini in Sheets, on a device export. Walks into the business office ready.</p>
+          <pre class="prompt-text">This Sheet is a ChromeOS device export from our Admin console.
+
+Group devices by model and auto-update expiration (AUE) date. Flag anything within 18 months of AUE.
+
+Then build a replacement-planning summary: counts by school and by year replacement is needed, with a rough budget line using [COST PER DEVICE].
+
+Format the output so I can drop it straight into a budget conversation with the business office.</pre>
+        </article>
+
+        <article class="prompt">
+          <div class="prompt-head">
+            <h3 class="prompt-name">License reconciliation</h3>
+            <button class="copy-btn" type="button">Copy</button>
+          </div>
+          <p class="prompt-when">Use in: Gemini in Sheets, with a license export and a user export side by side.</p>
+          <pre class="prompt-text">This Sheet has two tabs: [TAB 1] is our assigned-licenses export, [TAB 2] is our active-user export.
+
+Help me reconcile them: licenses assigned to suspended or deleted accounts, users missing a license they should have under our rule ([RULE — e.g., all certificated staff get Education Plus]), and any duplicates.
+
+Summarize the mismatches in a table and estimate what the unused licenses cost us at [PRICE PER LICENSE PER YEAR].</pre>
+        </article>
+      </section>
+
+      <!-- ==================== 4. VAULT & COMPLIANCE ==================== -->
+      <section class="cat" id="vault">
+        <h2 class="cat-title"><span class="n">04</span>Vault &amp; Compliance</h2>
+        <p class="cat-sub">Records requests are stressful enough without improvising the search strategy.</p>
+
+        <article class="prompt">
+          <div class="prompt-head">
+            <h3 class="prompt-name">Vault search plan for a records request</h3>
+            <button class="copy-btn" type="button">Copy</button>
+          </div>
+          <p class="prompt-when">Use when: a public-records or legal request lands and you want a defensible, documented search.</p>
+          <pre class="prompt-text">We received a records request: [SCOPE — WHO, WHAT, DATE RANGE].
+
+Draft a Google Vault search plan: which accounts and org units to search, date ranges, the search operators and terms to try (including likely misspellings and nicknames), what to export, and a log template so we document exactly what we searched and when.
+
+List the ambiguities I should clarify with the requester before running anything.</pre>
+        </article>
+
+        <article class="prompt">
+          <div class="prompt-head">
+            <h3 class="prompt-name">Retention rules, explained to leadership</h3>
+            <button class="copy-btn" type="button">Copy</button>
+          </div>
+          <p class="prompt-when">Use when: the superintendent asks &ldquo;do we still have that email from three years ago?&rdquo;</p>
+          <pre class="prompt-text">Here are our current Google Vault retention rules: [PASTE RULES].
+
+Explain in plain English, for a superintendent, what we keep, for how long, and what that means in practice when someone asks about an old email or file.
+
+Include the two or three questions leadership should be asking about whether these rules still match district policy and state records law. Note where I should confirm with legal counsel — don't guess at legal requirements.</pre>
+        </article>
+      </section>
+
+      <!-- ==================== 5. ROLLOUT & TRAINING ==================== -->
+      <section class="cat" id="rollout">
+        <h2 class="cat-title"><span class="n">05</span>Rollout &amp; Training</h2>
+        <p class="cat-sub">The part I spend most of my year on: turning &ldquo;it's enabled&rdquo; into &ldquo;it's used well.&rdquo;</p>
+
+        <article class="prompt">
+          <div class="prompt-head">
+            <h3 class="prompt-name">Phased enablement memo</h3>
+            <button class="copy-btn" type="button">Copy</button>
+          </div>
+          <p class="prompt-when">Use when: you need the pilot &rarr; staff &rarr; students plan on one page for your superintendent.</p>
+          <pre class="prompt-text">Draft a phased enablement plan for Gemini for Education at [DISTRICT], edition [EDITION].
+
+Phases: staff pilot ([GROUP], [DATES]) → all staff → students [GRADE BANDS]. For each phase: entry criteria, the admin-console settings to review before flipping anything (access by OU, age-based settings, feature toggles), what we'll measure, and the communication that goes out.
+
+Format as a one-page memo I can put in front of my superintendent.</pre>
+        </article>
+
+        <article class="prompt">
+          <div class="prompt-head">
+            <h3 class="prompt-name">45-minute staff PD session plan</h3>
+            <button class="copy-btn" type="button">Copy</button>
+          </div>
+          <p class="prompt-when">Use when: you're on the hook for PD and want hands-on, not a slideshow.</p>
+          <pre class="prompt-text">Design a 45-minute hands-on intro session, "Gemini in your day-to-day," for [AUDIENCE — e.g., K-5 teachers, mixed comfort levels].
+
+Structure: 5 minutes of framing (what it is, our district's rules), three live demos in tools they already use (Docs, Gmail, and one more you pick), 15 minutes of guided practice with task cards, and an exit ticket.
+
+Write the task cards and the exit ticket too. Assume the room has [DEVICES] and our enabled features are: [WHAT'S ON].</pre>
+        </article>
+
+        <article class="prompt">
+          <div class="prompt-head">
+            <h3 class="prompt-name">Teacher AI-champions starter kit</h3>
+            <button class="copy-btn" type="button">Copy</button>
+          </div>
+          <p class="prompt-when">Use when: adoption needs allies in every building, not another email from IT.</p>
+          <pre class="prompt-text">Draft a starter kit for a teacher AI-champions program: one or two champions per building.
+
+Include: the announcement asking for volunteers (what's in it for them, the expected time commitment), a monthly cadence (what champions do, how they feed questions back to IT), and simple recognition ideas that cost nothing.
+
+District context: [SIZE, NUMBER OF BUILDINGS, CULTURE NOTES].</pre>
+        </article>
+
+        <article class="prompt">
+          <div class="prompt-head">
+            <h3 class="prompt-name">Workshop follow-up email from raw notes</h3>
+            <button class="copy-btn" type="button">Copy</button>
+          </div>
+          <p class="prompt-when">Use when: the session's over, the notes are chaos, and the follow-up should go out today.</p>
+          <pre class="prompt-text">Here are my raw notes from today's [TOPIC] session: [PASTE NOTES].
+
+Turn them into a follow-up email to attendees: five key takeaways in their words, the links and resources mentioned, and next steps split by role (teacher / site tech / district admin).
+
+Include a subject line. Keep it skimmable — someone should get value from it in 30 seconds.</pre>
+        </article>
+      </section>
+
+      <p class="lib-foot">
+        Something missing, or a prompt that isn't landing for your district?
+        <a href="mailto:hello@ericsizemore.social">Tell me</a> &mdash; this page gets better the same way the workshops do.
+      </p>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-nav">
+        <a href="/">Home</a>
+        <a href="/#resources">Resources</a>
+        <a href="/#connect">Connect</a>
+      </nav>
+      <p class="footer-copy">&copy; 2026 Eric Sizemore. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    // Copy buttons — clipboard API with a textarea fallback
+    (function () {
+      'use strict';
+      document.querySelectorAll('.copy-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var pre = btn.closest('.prompt').querySelector('.prompt-text');
+          if (!pre) return;
+          var text = pre.textContent;
+          var done = function () {
+            btn.textContent = 'Copied ✓';
+            btn.classList.add('done');
+            setTimeout(function () {
+              btn.textContent = 'Copy';
+              btn.classList.remove('done');
+            }, 1600);
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done, function () { fallback(text, done); });
+          } else {
+            fallback(text, done);
+          }
+        });
+      });
+      function fallback(text, done) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); done(); } catch (e) { /* no-op */ }
+        document.body.removeChild(ta);
+      }
+    })();
+  </script>
+</body>
+</html>

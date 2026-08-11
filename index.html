@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eric Sizemore — Always testing ideas.</title>
-  <meta name="description" content="Eric Sizemore — K12 ed tech and AI. Writing, projects, and 200+ sessions on Google Workspace, ChromeOS, and Gemini. Always testing ideas.">
+  <meta name="description" content="Eric Sizemore — K12 ed tech and AI. Resources, writing, and 200+ sessions on Google Workspace, ChromeOS, and Gemini. Always testing ideas.">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Eric Sizemore">
-  <meta property="og:description" content="K12 ed tech and AI. Writing, projects, and 200+ sessions on Google Workspace, ChromeOS, and Gemini. Always testing ideas.">
+  <meta property="og:description" content="K12 ed tech and AI. Resources, writing, and 200+ sessions on Google Workspace, ChromeOS, and Gemini. Always testing ideas.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ericsizemore.social">
   <meta property="og:image" content="https://ericsizemore.social/assets/social-card.png">
@@ -19,7 +19,7 @@
   <!-- Twitter/Bluesky Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Eric Sizemore">
-  <meta name="twitter:description" content="K12 ed tech and AI. Writing, projects, and 200+ sessions on Google Workspace, ChromeOS, and Gemini. Always testing ideas.">
+  <meta name="twitter:description" content="K12 ed tech and AI. Resources, writing, and 200+ sessions on Google Workspace, ChromeOS, and Gemini. Always testing ideas.">
   <meta name="twitter:image" content="https://ericsizemore.social/assets/social-card.png">
 
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -45,198 +45,7 @@
       }
     })();
   </script>
-  <style>
-    /* ============================================
-       ericsizemore.social — Console wordmark identity
-       Rivian-influenced: forest / limestone dual theme,
-       one constant yellow-green accent. JetBrains Mono mark.
-       ============================================ */
-
-    :root {
-      /* Constants — never theme-swap */
-      --accent: #E6EC2B;            /* brand yellow-green — caret, knob, fills */
-      --accent-ink: #0e140e;        /* text/icon sitting ON the accent */
-      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
-      --max-width: 700px;
-      --radius: 4px;
-      --transition: 0.2s ease;
-    }
-
-    /* DARK (forest) — default */
-    [data-theme="dark"] {
-      --surface: #0e140e;
-      --surface-2: #141c14;
-      --ink: #f4f3ea;
-      --muted: #80958a;
-      --hair: rgba(244, 243, 230, 0.12);
-      --logo-mark: var(--accent);   /* chevron + // are yellow-green on dark */
-      --header-bg: rgba(14, 20, 14, 0.85);   /* translucent forest for the sticky header */
-
-      /* Mappings onto the site's existing variable names */
-      --bg-primary: var(--surface);
-      --bg-card: var(--surface-2);
-      --border: var(--hair);
-      --text-primary: var(--ink);
-      --text-secondary: #b9c3ba;    /* between ink and muted */
-      --text-muted: var(--muted);
-    }
-
-    /* LIGHT (limestone) */
-    [data-theme="light"] {
-      --surface: #ece8d9;
-      --surface-2: #e4ddc8;
-      --ink: #16291d;
-      --muted: #5d6e60;
-      --hair: rgba(22, 41, 29, 0.16);
-      --logo-mark: var(--ink);      /* chevron + // drop to ink — yellow-green is illegible on limestone */
-      --header-bg: rgba(236, 232, 217, 0.85);   /* translucent limestone for the sticky header */
-
-      --bg-primary: var(--surface);
-      --bg-card: var(--surface-2);
-      --border: var(--hair);
-      --text-primary: var(--ink);
-      --text-secondary: #3c4d42;    /* between ink and muted */
-      --text-muted: var(--muted);
-    }
-
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-    body { font-family: var(--font-sans); background: var(--bg-primary); color: var(--text-primary); font-size: 1.125rem; line-height: 1.7; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; transition: background 0.45s var(--transition), color 0.45s var(--transition); }
-    a { color: var(--text-primary); text-decoration: none; transition: color var(--transition), border-color var(--transition); }
-    a:hover { color: var(--logo-mark); }
-    img { max-width: 100%; display: block; }
-
-    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
-    .section { padding: 5rem 0; }
-    .section + .section { border-top: 1px solid var(--border); }
-    .section-title { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2rem; }
-    .section-subtitle { color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 1rem; }
-
-    .header { position: sticky; top: 0; z-index: 100; background: var(--header-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); transition: background 0.45s var(--transition), border-color 0.45s var(--transition); }
-    .nav { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; height: 64px; }
-    .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-
-    /* Console wordmark — compact lockup */
-    .logo { font-family: var(--font-mono); display: inline-flex; align-items: baseline; white-space: nowrap; font-weight: 500; font-size: 1rem; letter-spacing: -0.01em; }
-    .logo .chev { color: var(--logo-mark); font-weight: 700; margin-right: 0.45em; transition: color var(--transition); }
-    .logo .word { color: var(--ink); transition: color var(--transition); }
-    .logo:hover .word { color: var(--logo-mark); }
-    @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
-
-    .nav-links { display: flex; list-style: none; gap: 1.5rem; }
-    .nav-links a { color: var(--text-secondary); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.02em; transition: color var(--transition); }
-    .nav-links a:hover { color: var(--text-primary); }
-
-    /* Theme toggle — knob is the constant accent */
-    .theme-tog { width: 52px; height: 28px; border-radius: 28px; background: var(--surface); border: 1px solid var(--hair); position: relative; cursor: pointer; flex: 0 0 auto; padding: 0; transition: background var(--transition); }
-    .theme-tog .knob { position: absolute; top: 2px; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); transition: left 0.3s var(--transition); }
-    [data-theme="dark"] .theme-tog .knob { left: 29px; }
-    [data-theme="light"] .theme-tog .knob { left: 2px; }
-
-    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
-    .hamburger, .hamburger::before, .hamburger::after { display: block; width: 20px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: all 0.3s ease; }
-    .hamburger { position: relative; }
-    .hamburger::before, .hamburger::after { content: ''; position: absolute; left: 0; }
-    .hamburger::before { top: -6px; }
-    .hamburger::after { top: 6px; }
-    .nav-toggle[aria-expanded="true"] .hamburger { background: transparent; }
-    .nav-toggle[aria-expanded="true"] .hamburger::before { top: 0; transform: rotate(45deg); }
-    .nav-toggle[aria-expanded="true"] .hamburger::after { top: 0; transform: rotate(-45deg); }
-
-    .hero { padding: 7rem 0 5rem; min-height: 80vh; display: flex; align-items: center; border-bottom: 1px solid var(--border); }
-    .hero-lockup { font-family: var(--font-mono); margin-bottom: 2.75rem; }
-    .hero-l1 { margin: 0; display: flex; align-items: center; font-size: clamp(2.2rem, 8vw, 4rem); font-weight: 500; letter-spacing: -0.015em; line-height: 1; white-space: nowrap; }
-    .hero-l1 .chev { color: var(--logo-mark); font-weight: 700; margin-right: 0.4em; transition: color var(--transition); }
-    .hero-l1 .word { color: var(--ink); transition: color var(--transition); }
-    .hero-l1 .caret { display: inline-block; width: 0.55em; height: 0.9em; background: var(--accent); margin-left: 0.16em; align-self: center; animation: blink 1.1s steps(1) infinite; }
-    .hero-tag { margin-top: 1.5rem; padding-left: 1.5em; font-family: var(--font-mono); font-size: clamp(1.05rem, 2.6vw, 1.375rem); font-weight: 400; color: var(--text-secondary); }
-    .hero-tag .k { color: var(--logo-mark); transition: color var(--transition); }
-    .hero-cta { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-
-    .btn { display: inline-flex; align-items: center; padding: 0.75rem 1.5rem; font-size: 0.875rem; font-weight: 600; font-family: var(--font-sans); letter-spacing: 0.02em; border-radius: var(--radius); transition: all var(--transition); cursor: pointer; border: 1px solid transparent; }
-    .btn-primary { background: var(--text-primary); color: var(--bg-primary); }
-    .btn-primary:hover { background: var(--accent); color: var(--accent-ink); }
-    .btn-outline { border-color: var(--text-primary); color: var(--text-primary); background: transparent; }
-    .btn-outline:hover { background: var(--text-primary); color: var(--bg-primary); }
-
-    .about-content { max-width: 640px; }
-    .about-content p { color: var(--text-primary); margin-bottom: 1rem; font-size: 1.125rem; line-height: 1.7; }
-    .about-content a { color: var(--text-primary); border-bottom: 1.5px solid var(--accent); }
-    .about-content a:hover { color: var(--logo-mark); }
-
-    .year-filter { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2rem; }
-    .year-pill { background: none; border: 1px solid var(--border); color: var(--text-muted); font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.45rem 0.9rem; border-radius: var(--radius); cursor: pointer; transition: all var(--transition); }
-    .year-pill:hover { color: var(--text-primary); border-color: var(--text-primary); }
-    .year-pill[aria-pressed="true"] { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
-
-    .session-list, .interest-list { list-style: none; }
-    .session-list, .interest-list { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 2rem; border-top: 1px solid var(--border); }
-    .interest { padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
-    .session { padding: 0.85rem 0; border-bottom: 1px solid var(--border); }
-    .session-meta { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.25rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
-    .session-title { font-size: 1rem; font-weight: 600; margin-bottom: 0; letter-spacing: -0.01em; color: var(--text-primary); line-height: 1.45; }
-    .interest-name { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; letter-spacing: -0.01em; color: var(--text-primary); }
-    .session-title a { color: var(--text-primary); }
-    .session-title a:hover { color: var(--logo-mark); }
-    .interest-by { font-weight: 400; color: var(--text-muted); font-size: 0.9rem; }
-    .session-desc, .interest-desc { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.6rem; }
-    .interest-link { font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
-    .interest-link:hover { color: var(--logo-mark); }
-
-    .post-list { list-style: none; border-top: 1px solid var(--border); }
-    .post { padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
-    .post-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.45; margin-bottom: 0.35rem; }
-    .post-title a { color: var(--text-primary); }
-    .post-title a:hover { color: var(--logo-mark); }
-    .post .session-desc { margin-bottom: 0; }
-    .writing-cta { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2.25rem; }
-
-    .lab-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 2rem; border-top: 1px solid var(--border); }
-    .lab-item { padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
-    .lab-status { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); margin-bottom: 0.5rem; }
-    .lab-status-shipped { display: inline-block; color: var(--accent-ink); background: var(--accent); padding: 0.12rem 0.5rem; border-radius: 3px; }
-
-    .stack-tools { font-size: 1.15rem; color: var(--text-primary); line-height: 1.7; max-width: 600px; }
-
-    .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 1rem; }
-    .social-card { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; padding: 1.75rem 1rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); text-align: center; transition: border-color var(--transition), color var(--transition); }
-    .social-card:hover { border-color: var(--text-primary); }
-    .social-icon { width: 28px; height: 28px; color: var(--text-primary); transition: color var(--transition); }
-    .social-card:hover .social-icon { color: var(--logo-mark); }
-    .social-name { font-weight: 700; font-size: 0.9rem; color: var(--text-primary); letter-spacing: -0.01em; }
-    .social-handle { font-size: 0.75rem; color: var(--text-secondary); font-family: var(--font-mono); }
-
-    .footer { border-top: 1px solid var(--border); padding: 3rem 0; text-align: center; }
-    .footer-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2rem; margin-bottom: 1.5rem; }
-    .footer-nav a { color: var(--text-secondary); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; }
-    .footer-nav a:hover { color: var(--text-primary); }
-    .footer-copy { color: var(--text-muted); font-size: 0.8rem; font-family: var(--font-mono); }
-
-    .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    @media (prefers-reduced-motion: reduce) {
-      .hero-l1 .caret { animation: none; }
-      .fade-in { transition: none; }
-    }
-
-    @media (max-width: 768px) {
-      body { font-size: 1.0625rem; }
-      .nav-right { gap: 1rem; }
-      .nav-toggle { display: block; }
-      .nav-links { position: fixed; top: 64px; left: 0; right: 0; background: var(--bg-primary); border-bottom: 1px solid var(--border); flex-direction: column; padding: 1.5rem; gap: 1rem; transform: translateY(-100%); opacity: 0; pointer-events: none; transition: all 0.3s ease; }
-      .nav-links.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
-      .hero { padding: 4.5rem 0 3.5rem; min-height: auto; }
-      .section { padding: 3.5rem 0; }
-      .session-list, .interest-list, .lab-list { grid-template-columns: 1fr; column-gap: 0; }
-    }
-
-    @media (max-width: 480px) {
-      .hero-cta, .writing-cta { flex-direction: column; }
-      .btn { justify-content: center; }
-    }
-  </style>
+  <link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
   <!-- Header -->
@@ -248,8 +57,8 @@
       <div class="nav-right">
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
+          <li><a href="#resources">Resources</a></li>
           <li><a href="#writing">Writing</a></li>
-          <li><a href="#lab">Lab</a></li>
           <li><a href="#work">Work</a></li>
           <li><a href="#stack">Stack</a></li>
           <li><a href="#following">Following</a></li>
@@ -274,7 +83,7 @@
           <p class="hero-tag"><span class="k" aria-hidden="true">//</span> always testing ideas</p>
         </div>
         <div class="hero-cta fade-in">
-          <a href="#writing" class="btn btn-primary">What I'm Writing</a>
+          <a href="#resources" class="btn btn-primary">Browse Resources</a>
           <a href="#connect" class="btn btn-outline">Get in Touch</a>
         </div>
       </div>
@@ -287,14 +96,17 @@
         <div class="about-content fade-in">
           <p>
             Always testing ideas &mdash; for thirteen years that's mostly meant K12 ed tech.
-            Came up as an IT director (school networks, Chromebooks, the printer wars), now
-            lead an onboarding &amp; enablement team at CDW &mdash; still teaching from the
-            console, not the bullet point, 200+ sessions in.
+            Came up as an IT director (school networks, Chromebooks, the printer wars); now I
+            lead an onboarding &amp; enablement team at CDW and still teach from the console,
+            not the bullet point &mdash; 200+ technical workshops, admin bootcamps, and
+            security summits for districts across the country.
           </p>
           <p>
             Lately the ideas under test are about AI: what it actually changes in schools, in
-            knowledge work, and in how a team runs. The <a href="#writing">writing</a> and
-            <a href="#lab">experiments</a> here are where I work that out in public.
+            knowledge work, and in how a team runs. The <a href="#resources">resources</a> and
+            <a href="#writing">writing</a> here are where I work that out in public &mdash;
+            and where I keep the material I reach for when a district asks
+            &ldquo;so what would this actually look like for us?&rdquo;
           </p>
           <p>
             Beyond work, &ldquo;testing ideas&rdquo; is just being curious out loud. National
@@ -302,6 +114,37 @@
             arguments. Sooners 🏈, Thunder 🏀 &mdash; record optional.
           </p>
         </div>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section class="section" id="resources">
+      <div class="container">
+        <h2 class="section-title fade-in">Resources</h2>
+        <p class="section-subtitle fade-in">Practical material from the field &mdash; free to use, built to share.</p>
+        <ul class="lab-list fade-in">
+
+          <li class="lab-item">
+            <p class="lab-status lab-status-shipped">Shipped</p>
+            <h3 class="interest-name">Gemini prompt library for K12 admins</h3>
+            <p class="interest-desc">A curated, copy-ready set of prompts for the real work of running a district &mdash; policy drafts, family comms, audits, Vault, and rollout planning.</p>
+            <a class="interest-link" href="/resources/gemini-prompt-library/">&rarr; Open the library</a>
+          </li>
+
+          <li class="lab-item">
+            <p class="lab-status">In the works</p>
+            <h3 class="interest-name">Gemini onboarding playbook</h3>
+            <p class="interest-desc">A district-ready guide to rolling out Gemini for Education &mdash; what to turn on, what to lock down, and what to tell the cabinet. Distilled from two years of workshops.</p>
+          </li>
+
+          <li class="lab-item">
+            <p class="lab-status lab-status-shipped">Shipped</p>
+            <h3 class="interest-name">This site</h3>
+            <p class="interest-desc">A hand-built, no-framework home base on Cloudflare Workers. The Writing feed below is pulled live from my Substack by a tiny Worker &mdash; built in collaboration with Claude.</p>
+            <a class="interest-link" href="https://github.com/wombeeee/ericsizemore.social" target="_blank" rel="noopener">&rarr; Source</a>
+          </li>
+
+        </ul>
       </div>
     </section>
 
@@ -319,36 +162,6 @@
           <a href="https://ericsizemore.substack.com/subscribe" class="btn btn-primary" target="_blank" rel="noopener">Subscribe on Substack</a>
           <a href="https://ericsizemore.substack.com/archive" class="btn btn-outline" target="_blank" rel="noopener">Browse the Archive</a>
         </div>
-      </div>
-    </section>
-
-    <!-- Lab -->
-    <section class="section" id="lab">
-      <div class="container">
-        <h2 class="section-title fade-in">Lab</h2>
-        <p class="section-subtitle fade-in">Experiments in various states of shipped &mdash; ideas don't test themselves.</p>
-        <ul class="lab-list fade-in">
-
-          <li class="lab-item">
-            <p class="lab-status lab-status-shipped">Shipped</p>
-            <h3 class="interest-name">This site</h3>
-            <p class="interest-desc">A hand-built, no-framework home base on Cloudflare Workers. The Writing feed above is pulled live from my Substack by a tiny Worker &mdash; built in collaboration with Claude.</p>
-            <a class="interest-link" href="https://github.com/wombeeee/ericsizemore.social" target="_blank" rel="noopener">&rarr; Source</a>
-          </li>
-
-          <li class="lab-item">
-            <p class="lab-status">In the works</p>
-            <h3 class="interest-name">Gemini onboarding playbook</h3>
-            <p class="interest-desc">A district-ready guide to rolling out Gemini for Education &mdash; what to turn on, what to lock down, and what to tell the cabinet. Distilled from two years of workshops.</p>
-          </li>
-
-          <li class="lab-item">
-            <p class="lab-status">In the works</p>
-            <h3 class="interest-name">K12 admin prompt library</h3>
-            <p class="interest-desc">Prompts that earn their keep for Workspace admins &mdash; audits, policy checks, parent comms &mdash; tested in real consoles, not demo tenants.</p>
-          </li>
-
-        </ul>
       </div>
     </section>
 
@@ -741,8 +554,8 @@
     <div class="container">
       <nav class="footer-nav">
         <a href="#about">About</a>
+        <a href="#resources">Resources</a>
         <a href="#writing">Writing</a>
-        <a href="#lab">Lab</a>
         <a href="#work">Work</a>
         <a href="#stack">Stack</a>
         <a href="#following">Following</a>

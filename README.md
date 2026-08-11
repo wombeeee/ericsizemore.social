@@ -10,14 +10,17 @@ theme.
 
 ## Stack
 
-- **Static front end** — one `index.html` with inline CSS, progressive-enhancement JS in `js/main.js`. No framework, no bundler.
+- **Static front end** — `index.html` plus standalone resource pages under `resources/`, sharing one stylesheet (`css/site.css`). Progressive-enhancement JS in `js/main.js`. No framework, no bundler.
 - **Cloudflare Workers** — `worker.js` serves the static assets and adds one tiny API route (below).
 - **JetBrains Mono** — loaded from Google Fonts for the wordmark and mono labels; UI/body stay on the system sans stack.
 
 ## Project structure
 
 ```
-index.html        The whole page — markup + design tokens + styles
+index.html         The home page
+css/site.css       Shared stylesheet — design tokens + all site styles
+resources/         Standalone field-kit pages (e.g. the Gemini prompt library),
+                   each with its own shareable URL
 js/main.js         Theme toggle, mobile nav, scroll-to-top, fade-ins, the Writing feed
 worker.js          Cloudflare Worker: serves assets + the /api/posts feed proxy
 wrangler.jsonc     Worker / deploy config

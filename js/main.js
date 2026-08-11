@@ -57,8 +57,9 @@
 
   // --- Logo → scroll to the very top ---
   // The sticky header makes a bare #top anchor land short, so drive it explicitly.
+  // Only on the homepage (hash href) — on subpages the logo is a real link home.
   const navLogo = document.querySelector('.logo');
-  if (navLogo) {
+  if (navLogo && (navLogo.getAttribute('href') || '').indexOf('#') === 0) {
     navLogo.addEventListener('click', (e) => {
       e.preventDefault();
       const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
